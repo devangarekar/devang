@@ -15,22 +15,43 @@ body {
   margin: 0;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(120deg, #fde2e4, #e0f2fe, #fef3c7);
-  background-size: 400% 400%;
-  animation: bgMove 12s ease infinite;
+  background: linear-gradient(120deg,
+    #ff9a9e,
+    #fad0c4,
+    #fbc2eb,
+    #a1c4fd,
+    #c2e9fb);
+  background-size: 500% 500%;
+  animation: bg 12s ease infinite;
 }
 
-@keyframes bgMove {
+@keyframes bg {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-.container {
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp 8s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(-110vh) scale(1.4); opacity: 0; }
+}
+
+/* Slider */
+.slider {
   width: 200%;
   height: 100%;
   display: flex;
-  transition: transform 1s ease;
+  transition: transform 1.2s ease;
 }
 
 .page {
@@ -41,46 +62,71 @@ body {
   justify-content: center;
 }
 
+/* Card */
 .card {
   background: white;
-  padding: 32px;
+  border-radius: 24px;
+  padding: 30px;
   max-width: 420px;
   width: 90%;
-  border-radius: 22px;
   text-align: center;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-  animation: fadeUp 1s ease;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+  animation: fadeIn 1s ease;
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(25px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.avatar {
-  font-size: 72px;
-  margin-bottom: 10px;
+/* Animals walking */
+.animals {
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  gap: 12px;
+  animation: walk 4s ease-in-out infinite;
+}
+
+@keyframes walk {
+  0% { transform: translateX(-10px); }
+  50% { transform: translateX(10px); }
+  100% { transform: translateX(-10px); }
 }
 
 h1 {
   font-size: 26px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 p {
   font-size: 16px;
   line-height: 1.7;
-  margin-bottom: 20px;
   color: #374151;
 }
 
+.poem span {
+  display: block;
+  opacity: 0;
+  animation: reveal 1s forwards;
+}
+
+.poem span:nth-child(1) { animation-delay: 0.5s; }
+.poem span:nth-child(2) { animation-delay: 1.5s; }
+.poem span:nth-child(3) { animation-delay: 2.5s; }
+
+@keyframes reveal {
+  to { opacity: 1; }
+}
+
 button {
+  margin-top: 18px;
   border: none;
   padding: 12px 22px;
   border-radius: 30px;
   font-size: 15px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: 0.3s;
 }
 
 .primary {
@@ -89,7 +135,7 @@ button {
 }
 
 .primary:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
   background: #db2777;
 }
 
@@ -99,45 +145,50 @@ button {
 }
 
 .secondary:hover {
-  transform: scale(1.05);
-  background: #000;
+  transform: scale(1.08);
 }
 
 .hidden {
   display: none;
 }
 
-.date-plan {
-  animation: fadeUp 0.8s ease;
-}
-
 .soft {
   font-style: italic;
   opacity: 0.8;
-  margin-top: 16px;
+  margin-top: 18px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container" id="slider">
+<!-- Floating hearts -->
+<script>
+for (let i = 0; i < 20; i++) {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerText = "💖";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.animationDelay = Math.random() * 6 + "s";
+  document.body.appendChild(h);
+}
+</script>
+
+<div class="slider" id="slider">
 
   <!-- PAGE 1 -->
   <div class="page">
     <div class="card">
-      <div class="avatar">🧑🏽‍🦱✨</div>
+      <div class="animals">🦒 🐘 🐼</div>
       <h1>Hey Harshwardhan</h1>
-      <p>
-        I was thinking about something simple.<br>
-        Not rushed. Not loud.<br>
-        Just a moment where two people<br>
-        let the day unfold.
+
+      <p class="poem">
+        <span>I was thinking about tomorrow.</span>
+        <span>About colour, laughter, and curiosity.</span>
+        <span>About letting the day feel light.</span>
       </p>
-      <p>
-        I made this for you 🌿
-      </p>
-      <button class="primary" onclick="nextPage()">Take me there →</button>
+
+      <button class="primary" onclick="next()">Come with me →</button>
     </div>
   </div>
 
@@ -147,30 +198,24 @@ button {
       <h1>Will you be my date?</h1>
       <p>
         No pressure.<br>
-        Just curiosity, calm,<br>
-        and a little bit of fun.
+        Just two people,<br>
+        letting the world feel a little softer.
       </p>
 
-      <button class="primary" onclick="showPlan()">Yes</button>
-      <button class="secondary" onclick="showPlan()">Obviously yes</button>
+      <button class="primary" onclick="show()">Yes</button>
+      <button class="secondary" onclick="show()">Obviously yes</button>
 
-      <div id="plan" class="date-plan hidden">
+      <div id="plan" class="hidden">
         <p>
-          🦒 A slow walk at the zoo<br>
-          🐘 Naming animals like kids<br>
+          🦒 Zoo walks<br>
+          🐘 Silly animal names<br>
           🍦 Ice cream breaks<br>
-          📸 Bad photos, good laughs
-        </p>
-
-        <p>
-          Just presence.<br>
-          Just being there.
+          📸 Laughing at bad photos
         </p>
 
         <p id="note" class="soft hidden">
           I really liked our first date.<br>
-          I’d love to know you better —<br>
-          slowly, honestly.
+          I want to know you better — slowly.
           <br><br>
           “I’ve been spending the last eight months<br>
           thinking all love ever does is break…”
@@ -184,11 +229,11 @@ button {
 </div>
 
 <script>
-function nextPage() {
+function next() {
   document.getElementById("slider").style.transform = "translateX(-50%)";
 }
 
-function showPlan() {
+function show() {
   document.getElementById("plan").classList.remove("hidden");
   setTimeout(() => {
     document.getElementById("note").classList.remove("hidden");
@@ -198,4 +243,3 @@ function showPlan() {
 
 </body>
 </html>
-
