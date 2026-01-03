@@ -2,59 +2,190 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Tomorrow 🌿</title>
+  <title>A Question for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Georgia', serif;
+    }
+
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fde2e4, #e0f2fe);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #f7f7f5;
-      font-family: Georgia, serif;
-      color: #222;
+      color: #1f2937;
     }
+
     .card {
       background: white;
-      padding: 32px;
-      max-width: 360px;
-      border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      border-radius: 22px;
+      padding: 32px 26px;
+      max-width: 430px;
+      width: 92%;
       text-align: center;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+      animation: fadeIn 1s ease;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .avatar {
+      font-size: 72px;
+      margin-bottom: 10px;
+    }
+
     h1 {
-      font-size: 22px;
+      font-size: 26px;
       margin-bottom: 12px;
-      font-weight: normal;
     }
+
     p {
+      font-size: 16px;
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .buttons button {
+      border: none;
+      padding: 12px 20px;
+      margin: 8px;
+      border-radius: 30px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .yes {
+      background: #ec4899;
+      color: white;
+    }
+
+    .yes:hover {
+      background: #db2777;
+      transform: scale(1.05);
+    }
+
+    .obvious {
+      background: #111827;
+      color: white;
+    }
+
+    .obvious:hover {
+      background: #000;
+      transform: scale(1.05);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .date-plan {
+      margin-top: 22px;
+      font-size: 15px;
+      line-height: 1.75;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .signature {
+      margin-top: 24px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    .soft-note {
+      margin-top: 20px;
+      font-style: italic;
       font-size: 15px;
       line-height: 1.7;
-      color: #555;
-    }
-    .soft {
-      margin-top: 18px;
-      font-size: 13px;
-      color: #888;
+      opacity: 0.85;
     }
   </style>
 </head>
+
 <body>
   <div class="card">
-    <h1>Hey Harsh 🐾</h1>
+
+    <!-- Curly hair boy vibe -->
+    <div class="avatar">🧑🏽‍🦱🦒</div>
+
+    <h1>Hey Harshwardhan</h1>
+
     <p>
-      Tomorrow we go to the zoo.<br>
-      Walk slow. Look around.<br>
-      No rush, no pressure.
+      I was thinking…  
+      not about rushing,  
+      not about labels,  
+      just about spending a day together  
+      where we can be curious again.
     </p>
+
     <p>
-      Just two curious minds<br>
-      and a few animals judging us.
+      Something simple.  
+      Something easy.  
+      Something that lets the day unfold.
     </p>
-    <p class="soft">
-      Say yes if it feels right 🌿
-    </p>
+
+    <h1>Will you be my date?</h1>
+
+    <div class="buttons">
+      <button class="yes" onclick="showDate()">Yes</button>
+      <button class="obvious" onclick="showDate()">Obviously yes</button>
+    </div>
+
+    <!-- DATE PLAN -->
+    <div id="datePlan" class="date-plan hidden">
+      <p>
+        Then here’s how I imagine it:
+      </p>
+
+      <p>
+        🦒 Walking slowly at the zoo<br>
+        🐘 Naming animals like kids<br>
+        🍦 Ice-cream breaks<br>
+        📸 Bad photos, good laughs<br>
+        🌞 No pressure — just presence
+      </p>
+
+      <p>
+        Just two people,  
+        letting the day be what it is.
+      </p>
+
+      <!-- HIDDEN EMOTIONAL NOTE -->
+      <p id="hiddenNote" class="soft-note hidden">
+        I really liked our first date.  
+        I’d like to know you better —  
+        slowly, honestly.
+        <br><br>
+        <span style="opacity:0.7;">
+          “I’ve been spending the last eight months thinking  
+          all love ever does is break…”
+        </span>
+      </p>
+
+      <p class="signature">
+        — Devang
+      </p>
+    </div>
+
   </div>
+
+  <script>
+    function showDate() {
+      document.getElementById("datePlan").classList.remove("hidden");
+
+      // Reveal the hidden note after a short pause
+      setTimeout(() => {
+        document.getElementById("hiddenNote").classList.remove("hidden");
+      }, 2500);
+    }
+  </script>
 </body>
 </html>
