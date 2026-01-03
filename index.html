@@ -6,11 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-:root {
-  --pink:#ec4899;
-  --dark:#111827;
-}
-
 * {
   box-sizing: border-box;
   font-family: 'Georgia', serif;
@@ -39,7 +34,7 @@ body {
   100%{background-position:0% 50%}
 }
 
-/* floating hearts */
+/* Floating hearts */
 .heart {
   position:absolute;
   bottom:-20px;
@@ -54,38 +49,23 @@ body {
   100%{transform:translateY(-120vh) scale(1.6);opacity:0}
 }
 
-/* animals walking */
-.animals {
-  font-size:52px;
-  display:flex;
-  gap:14px;
-  justify-content:center;
-  animation:walk 5s ease-in-out infinite;
-}
-
-@keyframes walk {
-  0%{transform:translateX(-15px)}
-  50%{transform:translateX(15px)}
-  100%{transform:translateX(-15px)}
-}
-
-/* slider */
+/* Slider */
 .slider {
-  width:200%;
+  width:300%;
   height:100%;
   display:flex;
   transition:transform 1.2s cubic-bezier(.77,0,.18,1);
 }
 
 .page {
-  width:50%;
+  width:33.3333%;
   height:100%;
   display:flex;
   justify-content:center;
   align-items:center;
 }
 
-/* card */
+/* Card */
 .card {
   background:white;
   max-width:440px;
@@ -102,6 +82,30 @@ body {
   to{opacity:1;transform:translateY(0)}
 }
 
+.animals {
+  font-size:52px;
+  display:flex;
+  gap:14px;
+  justify-content:center;
+  animation:walk 5s ease-in-out infinite;
+}
+
+@keyframes walk {
+  0%{transform:translateX(-15px)}
+  50%{transform:translateX(15px)}
+  100%{transform:translateX(-15px)}
+}
+
+.elephants {
+  font-size:70px;
+  animation:pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.15)}
+}
+
 h1 {
   font-size:28px;
   margin-bottom:14px;
@@ -111,20 +115,6 @@ p {
   font-size:16px;
   line-height:1.7;
   color:#374151;
-}
-
-.poem span {
-  display:block;
-  opacity:0;
-  animation:reveal 1s forwards;
-}
-
-.poem span:nth-child(1){animation-delay:.6s}
-.poem span:nth-child(2){animation-delay:1.6s}
-.poem span:nth-child(3){animation-delay:2.6s}
-
-@keyframes reveal {
-  to{opacity:1}
 }
 
 button {
@@ -138,27 +128,18 @@ button {
 }
 
 .primary {
-  background:var(--pink);
+  background:#ec4899;
   color:white;
 }
 .primary:hover {transform:scale(1.08)}
 
 .secondary {
-  background:var(--dark);
+  background:#111827;
   color:white;
 }
 .secondary:hover {transform:scale(1.08)}
 
 .hidden {display:none}
-
-.confetti {
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-}
 
 .soft {
   margin-top:18px;
@@ -170,7 +151,7 @@ button {
 
 <body>
 
-<!-- hearts -->
+<!-- Hearts -->
 <script>
 for(let i=0;i<30;i++){
   let h=document.createElement("div");
@@ -189,12 +170,12 @@ for(let i=0;i<30;i++){
   <div class="card">
     <div class="animals">🦒 🐘 🐼</div>
     <h1>Hey Harshwardhan</h1>
-    <p class="poem">
-      <span>Some days are meant to be light.</span>
-      <span>Full of colour, movement, laughter.</span>
-      <span>And nothing that needs to be rushed.</span>
+    <p>
+      Some days are meant to be light.<br>
+      Full of colour, movement, and curiosity.<br>
+      Nothing rushed.
     </p>
-    <button class="primary" onclick="nextPage()">Come with me →</button>
+    <button class="primary" onclick="goTo(1)">Come with me →</button>
   </div>
 </div>
 
@@ -204,44 +185,45 @@ for(let i=0;i<30;i++){
     <h1>Will you be my date?</h1>
     <p>
       No pressure.<br>
-      Just curiosity, warmth,<br>
-      and letting the day feel easy.
+      Just a day that feels easy<br>
+      and a little fun.
     </p>
-
     <button class="primary" onclick="accept()">Yes</button>
     <button class="secondary" onclick="accept()">Obviously yes</button>
+  </div>
+</div>
 
-    <div id="plan" class="hidden">
-      <p>
-        🦒 Zoo walks<br>
-        🐘 Naming animals badly<br>
-        🍦 Ice cream pauses<br>
-        📸 Laughing at bad photos
-      </p>
+<!-- PAGE 3 -->
+<div class="page">
+  <div class="card">
+    <div class="elephants">🐘💞🐘</div>
 
-      <p class="soft" id="note">
-        I really liked our first date.<br>
-        I want to know you better —<br>
-        slowly, honestly.
-      </p>
+    <h1>Okay…</h1>
+    <p>Be ready tomorrow 🦒</p>
 
-      <p class="soft">— Devang</p>
-    </div>
+    <p class="soft" id="lastLine">
+      Oh, one last thing…<br><br>
+      I really liked our first date.<br>
+      I want to know you better —<br>
+      slowly, honestly.
+    </p>
+
+    <p class="soft">— Devang</p>
   </div>
 </div>
 
 </div>
 
 <script>
-function nextPage(){
-  document.getElementById("slider").style.transform="translateX(-50%)";
+function goTo(page){
+  document.getElementById("slider").style.transform =
+    "translateX(-"+(page*33.3333)+"%)";
 }
 
 function accept(){
-  document.getElementById("plan").classList.remove("hidden");
+  goTo(2);
 }
 </script>
 
 </body>
 </html>
-
