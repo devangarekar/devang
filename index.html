@@ -1,191 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>A Question for You</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>For You</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Georgia', serif;
-    }
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Georgia', serif;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #fde2e4, #e0f2fe);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #1f2937;
-    }
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(120deg, #fde2e4, #e0f2fe, #fef3c7);
+  background-size: 400% 400%;
+  animation: bgMove 12s ease infinite;
+}
 
-    .card {
-      background: white;
-      border-radius: 22px;
-      padding: 32px 26px;
-      max-width: 430px;
-      width: 92%;
-      text-align: center;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.12);
-      animation: fadeIn 1s ease;
-    }
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+.container {
+  width: 200%;
+  height: 100%;
+  display: flex;
+  transition: transform 1s ease;
+}
 
-    .avatar {
-      font-size: 72px;
-      margin-bottom: 10px;
-    }
+.page {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    h1 {
-      font-size: 26px;
-      margin-bottom: 12px;
-    }
+.card {
+  background: white;
+  padding: 32px;
+  max-width: 420px;
+  width: 90%;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+  animation: fadeUp 1s ease;
+}
 
-    p {
-      font-size: 16px;
-      line-height: 1.65;
-      margin-bottom: 18px;
-    }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    .buttons button {
-      border: none;
-      padding: 12px 20px;
-      margin: 8px;
-      border-radius: 30px;
-      font-size: 15px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
+.avatar {
+  font-size: 72px;
+  margin-bottom: 10px;
+}
 
-    .yes {
-      background: #ec4899;
-      color: white;
-    }
+h1 {
+  font-size: 26px;
+  margin-bottom: 14px;
+}
 
-    .yes:hover {
-      background: #db2777;
-      transform: scale(1.05);
-    }
+p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: #374151;
+}
 
-    .obvious {
-      background: #111827;
-      color: white;
-    }
+button {
+  border: none;
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
 
-    .obvious:hover {
-      background: #000;
-      transform: scale(1.05);
-    }
+.primary {
+  background: #ec4899;
+  color: white;
+}
 
-    .hidden {
-      display: none;
-    }
+.primary:hover {
+  transform: scale(1.05);
+  background: #db2777;
+}
 
-    .date-plan {
-      margin-top: 22px;
-      font-size: 15px;
-      line-height: 1.75;
-      animation: fadeIn 0.8s ease;
-    }
+.secondary {
+  background: #111827;
+  color: white;
+}
 
-    .signature {
-      margin-top: 24px;
-      font-size: 14px;
-      opacity: 0.7;
-    }
+.secondary:hover {
+  transform: scale(1.05);
+  background: #000;
+}
 
-    .soft-note {
-      margin-top: 20px;
-      font-style: italic;
-      font-size: 15px;
-      line-height: 1.7;
-      opacity: 0.85;
-    }
-  </style>
+.hidden {
+  display: none;
+}
+
+.date-plan {
+  animation: fadeUp 0.8s ease;
+}
+
+.soft {
+  font-style: italic;
+  opacity: 0.8;
+  margin-top: 16px;
+}
+</style>
 </head>
 
 <body>
-  <div class="card">
 
-    <!-- Curly hair boy vibe -->
-    <div class="avatar">🧑🏽‍🦱🦒</div>
+<div class="container" id="slider">
 
-    <h1>Hey Harshwardhan</h1>
-
-    <p>
-      I was thinking…  
-      not about rushing,  
-      not about labels,  
-      just about spending a day together  
-      where we can be curious again.
-    </p>
-
-    <p>
-      Something simple.  
-      Something easy.  
-      Something that lets the day unfold.
-    </p>
-
-    <h1>Will you be my date?</h1>
-
-    <div class="buttons">
-      <button class="yes" onclick="showDate()">Yes</button>
-      <button class="obvious" onclick="showDate()">Obviously yes</button>
+  <!-- PAGE 1 -->
+  <div class="page">
+    <div class="card">
+      <div class="avatar">🧑🏽‍🦱✨</div>
+      <h1>Hey Harshwardhan</h1>
+      <p>
+        I was thinking about something simple.<br>
+        Not rushed. Not loud.<br>
+        Just a moment where two people<br>
+        let the day unfold.
+      </p>
+      <p>
+        I made this for you 🌿
+      </p>
+      <button class="primary" onclick="nextPage()">Take me there →</button>
     </div>
-
-    <!-- DATE PLAN -->
-    <div id="datePlan" class="date-plan hidden">
-      <p>
-        Then here’s how I imagine it:
-      </p>
-
-      <p>
-        🦒 Walking slowly at the zoo<br>
-        🐘 Naming animals like kids<br>
-        🍦 Ice-cream breaks<br>
-        📸 Bad photos, good laughs<br>
-        🌞 No pressure — just presence
-      </p>
-
-      <p>
-        Just two people,  
-        letting the day be what it is.
-      </p>
-
-      <!-- HIDDEN EMOTIONAL NOTE -->
-      <p id="hiddenNote" class="soft-note hidden">
-        I really liked our first date.  
-        I’d like to know you better —  
-        slowly, honestly.
-        <br><br>
-        <span style="opacity:0.7;">
-          “I’ve been spending the last eight months thinking  
-          all love ever does is break…”
-        </span>
-      </p>
-
-      <p class="signature">
-        — Devang
-      </p>
-    </div>
-
   </div>
 
-  <script>
-    function showDate() {
-      document.getElementById("datePlan").classList.remove("hidden");
+  <!-- PAGE 2 -->
+  <div class="page">
+    <div class="card">
+      <h1>Will you be my date?</h1>
+      <p>
+        No pressure.<br>
+        Just curiosity, calm,<br>
+        and a little bit of fun.
+      </p>
 
-      // Reveal the hidden note after a short pause
-      setTimeout(() => {
-        document.getElementById("hiddenNote").classList.remove("hidden");
-      }, 2500);
-    }
-  </script>
+      <button class="primary" onclick="showPlan()">Yes</button>
+      <button class="secondary" onclick="showPlan()">Obviously yes</button>
+
+      <div id="plan" class="date-plan hidden">
+        <p>
+          🦒 A slow walk at the zoo<br>
+          🐘 Naming animals like kids<br>
+          🍦 Ice cream breaks<br>
+          📸 Bad photos, good laughs
+        </p>
+
+        <p>
+          Just presence.<br>
+          Just being there.
+        </p>
+
+        <p id="note" class="soft hidden">
+          I really liked our first date.<br>
+          I’d love to know you better —<br>
+          slowly, honestly.
+          <br><br>
+          “I’ve been spending the last eight months<br>
+          thinking all love ever does is break…”
+        </p>
+
+        <p class="soft">— Devang</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function nextPage() {
+  document.getElementById("slider").style.transform = "translateX(-50%)";
+}
+
+function showPlan() {
+  document.getElementById("plan").classList.remove("hidden");
+  setTimeout(() => {
+    document.getElementById("note").classList.remove("hidden");
+  }, 2500);
+}
+</script>
+
 </body>
 </html>
+
